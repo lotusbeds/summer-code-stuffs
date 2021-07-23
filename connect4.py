@@ -59,13 +59,13 @@ def p2won():
     print("Player 2 won!")
     exit()
 
-def checkWin():
+def checkWin(board):
     for x in range(len(board)):
-        for y in range(3):
+        for y in range(4):
             if (board[x][y]) == p1Symbol and (board[x][y+1]) == p1Symbol and (board[x][y+2]) == p1Symbol and (board[x][y+3]) == p1Symbol:
                 p1won()
     for x in range(len(board)):
-        for y in range(3):
+        for y in range(4):
             if (board[x][y]) == p2Symbol and (board[x][y+1]) == p2Symbol and (board[x][y+2]) == p2Symbol and (board[x][y+3]) == p2Symbol:
                 p2won()
     for x in range(4):
@@ -76,21 +76,29 @@ def checkWin():
         for y in range(len(board)):
             if (board[x][y]) == p1Symbol and (board[x+1][y]) == p1Symbol and (board[x+2][y]) == p1Symbol and (board[x+3][y]) == p1Symbol:
                 p1won()
-    for x in range(len(board)):
-        for y in range(3):
+    for x in range(4):
+        for y in range(4):
             if (board[x][y]) == p1Symbol and (board[x+1][y+1]) == p1Symbol and (board[x+2][y+2]) == p1Symbol and (board[x+3][y+3]) == p1Symbol:
                 p1won()
-    for x in range(len(board)):
-        for y in range(3):
+    for x in range(4):
+        for y in range(4):
             if (board[x][y]) == p2Symbol and (board[x+1][y+1]) == p2Symbol and (board[x+2][y+2]) == p2Symbol and (board[x+3][y+3]) == p2Symbol:
+                p2won()
+    for x in range(4):
+        for y in range(6, 0, -1):
+            if (board[x][y]) == p1Symbol and (board[x+1][y-1]) == p1Symbol and (board[x+2][y-2]) == p1Symbol and (board[x+3][y-3]) == p1Symbol:
+                p1won()
+    for x in range(4):
+        for y in range(6, 0, -1):
+            if (board[x][y]) == p2Symbol and (board[x+1][y-1]) == p2Symbol and (board[x+2][y-2]) == p2Symbol and (board[x+3][y-3]) == p2Symbol:
                 p2won()
     
 def play():
     while True:
         p1move()
-        checkWin()
+        checkWin(board)
         p2move()
-        checkWin()
+        checkWin(board)
             
 makeBoard()
 p1Symbol, p2Symbol = chooseLetter()
